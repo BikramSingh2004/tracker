@@ -1,30 +1,70 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 📊 tracker – offline first page analytics
 
-## Getting Started
+FOR admin portal access 
+Gmail for login:    admin@example.com
+Pass :     12345
 
-First, run the development server:
+i build a fullstack app using **next.js app router** + **mongodb**  
+main feature is to track which user is visiting which page and how much time they are spending.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## 🛠 tech used
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- next.js 15 (app router)
+- mongodb atlas
+- tailwind + shadcn ui
+- localforage for offline data
+- jwt based admin login
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🔄 how it works
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- when user open any page, `trackPage()` is called
+- it stores start time, userId, sessionId, and page path
+- on page unload, it calculates duration and stores it in localForage
+- once user comes online, all events are synced to mongodb via `/api/sync`
+- admin can login and check all analytics at `/admin/dashboard`
 
-## Learn More
+## 📁 dashboard
 
-To learn more about Next.js, take a look at the following resources:
+admin dashboard has filters:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- filter by page
+- filter by userId or sessionId
+- date range filter also
+
+you can apply filters in any combo
+
+## 🚀 deployment
+
+- frontend + backend hosted on **vercel**
+- used vercel environment variable for mongodb uri
+
+## ⚠️ notes
+
+- initially I saved page as `page1`, `page2`, but now using real path like `/about`
+- handled both using `pageMap`
+- date filter was tricky in mongodb, so handled with proper ISO time
+- added basic login:  
+  - email: `admin@example.com`  
+  - password: `12345`
+
+## 🧠 what I learned
+
+- offline sync logic
+- how to store + filter data properly in mongodb
+- using useEffect smartly for tracking
+- real-time + offline first architecture
+
+## ✅ features
+
+- analytics per page
+- user session level tracking
+- offline → sync once back online
+- dashboard with filters
+
+---
+
+thanks for checking ✌️  
+
 - [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
 You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
