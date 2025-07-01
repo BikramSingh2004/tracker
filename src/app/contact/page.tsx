@@ -12,7 +12,7 @@ export default function Page() {
   return (
     <div className="min-h-screen bg-black flex flex-col items-center justify-center text-white px-4">
       <h1 className="text-4xl font-bold mb-10 text-center">
-        This is HOME Page is Here
+        Contact Page is Here
       </h1>
 
       <Card className="bg-gradient-to-br from-purple-500 to-indigo-600 w-full max-w-md shadow-2xl rounded-2xl">
