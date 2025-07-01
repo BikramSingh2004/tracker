@@ -12,7 +12,8 @@ export async function GET(req: NextRequest) {
     const start = searchParams.get("start");
     const end = searchParams.get("end");
 
-    const match: Record<string, any> = {};
+    // const match: Record<string, any> = {};
+    const match: Record<string, unknown> = {};
     if (user_Id) match.user_Id = user_Id;
     if (session_Id) match.session_Id = session_Id;
 

@@ -59,9 +59,11 @@ export default function Page() {
   }, []);
 
   useEffect(() => {
-    if (logged) fetchData();
+    if (logged) {
+      fetchData();
+    }
   }, [logged]);
-
+  
   const login = async () => {
     setLoading(true);
     const res = await fetch("/api/login", {
